@@ -1,12 +1,27 @@
 const grid = document.querySelector("#grid");
-const startButton = document.querySelector(".start-button");
-const stopButton = document.querySelector(".stop-button");
+const startStopButton = document.querySelector(".start-stop-button");
 const gridWidth = 10;
 const gridHeight = 10;
 let gameGrid = [];
 const cellWidth = 20;
 const cellHeight = 20;
 grid.style.width = `${gridWidth * cellWidth}px`;
+
+let startGame = true;
+
+// function for start/stop button on click
+let startStopGame = startStopButton.addEventListener("click", () => {
+  if (!startGame) {
+    startStopButton.innerText = "Start";
+    startStopButton.style.backgroundColor = "#4caf50";
+    startGame = !startGame;
+  } else {
+    startStopButton.innerText = "Stop";
+    startStopButton.style.backgroundColor = "#f44336";
+    startGame = !startGame;
+  }
+  console.log("startGameins", startGame);
+});
 
 // function to create grid
 
@@ -92,7 +107,7 @@ const updateGrid = () => {
       }
     }
   }
+  console.log("newGrid", newGrid);
 };
 
 updateGrid();
-console.log("gameGrid", gameGrid);

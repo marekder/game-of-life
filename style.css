@@ -30,8 +30,7 @@ body {
   background-color: darksalmon;
 }
 
-.start-button,
-.stop-button {
+.start-stop-button {
   background-color: #4caf50;
   border: none;
   color: white;
