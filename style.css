@@ -30,7 +30,8 @@ body {
   background-color: darksalmon;
 }
 
-.start-stop-button {
+button,
+input {
   background-color: #4caf50;
   border: none;
   color: white;
@@ -40,4 +41,9 @@ body {
   font-weight: 700;
   cursor: pointer;
   width: 8em;
+}
+
+.width:focus,
+.height:focus {
+  background-color: gray;
 }

@@ -1,5 +1,6 @@
 const grid = document.querySelector("#grid");
 const startStopButton = document.querySelector(".start-stop-button");
+const randomButton = document.querySelector(".random-button");
 const gridWidth = 10;
 const gridHeight = 10;
 let gameGrid = [];
@@ -20,7 +21,8 @@ let startStopGame = startStopButton.addEventListener("click", () => {
     startStopButton.style.backgroundColor = "#f44336";
     startGame = !startGame;
   }
-  console.log("startGameins", startGame);
+
+  // init() game
 });
 
 // function to create grid
@@ -59,13 +61,17 @@ const renderGrid = () => {
       grid.appendChild(cell);
     }
   }
+  console.log("gameGrid", gameGrid);
+  updateGrid();
 };
 
-renderGrid();
+// const randomGrid = () => {
+//   gameGrid = [];
+//   grid.innerHTML = "";
+//   randomButton.addEventListener("click", renderGrid);
+// };
 
-console.log("gameGrid", gameGrid);
-console.log("gridWidth", gridWidth);
-console.log("gridHeight", gridHeight);
+// randomGrid();
 
 // function to countAliveNeighbors
 const countAliveNeighbors = (board, row, col) => {
@@ -109,5 +115,4 @@ const updateGrid = () => {
   }
   console.log("newGrid", newGrid);
 };
-
-updateGrid();
+renderGrid();
