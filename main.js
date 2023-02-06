@@ -114,5 +114,28 @@ const updateGrid = () => {
     }
   }
   console.log("newGrid", newGrid);
+  grid.innerHTML = "";
+  for (let row = 0; row < gridWidth; row++) {
+    for (let column = 0; column < gridHeight; column++) {
+      const cell = document.createElement("div");
+      cell.classList.add("cell");
+      if (newGrid[row][column] == 1) {
+        cell.classList.add("alive");
+        cell.setAttribute("value", 1);
+        gameGrid[row][column] = 1;
+      } else {
+        cell.classList.add("dead");
+        cell.setAttribute("value", 0);
+        gameGrid[row][column] = 0;
+      }
+      // const randomAlive = Math.random() > 0.5 ? "alive" : "dead";
+      // cell.classList.add(randomAlive);
+      cell.setAttribute("row", row);
+      cell.id = `${row}-${column}`;
+      cell.style.width = `${cellWidth}px`;
+      cell.style.height = `${cellHeight}px`;
+      grid.appendChild(cell);
+    }
+  }
 };
 renderGrid();
