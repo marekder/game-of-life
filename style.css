@@ -1,0 +1,44 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  height: 90vh;
+  margin: 0;
+  padding: 0;
+}
+
+#grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#grid div {
+  cursor: pointer;
+  border: 1px solid grey;
+
+  margin: 0;
+  padding: 0;
+}
+
+.dead {
+  background-color: white;
+}
+
+.alive {
+  background-color: darksalmon;
+}
+
+.start-button,
+.stop-button {
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: 10px 10px;
+  margin: 5px;
+  text-align: center;
+  font-weight: 700;
+  cursor: pointer;
+  width: 8em;
+}
