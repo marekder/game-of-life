@@ -22,6 +22,11 @@ body {
   padding: 0;
 }
 
+.span {
+  display: inline;
+  background: red;
+}
+
 .dead {
   background-color: white;
 }
@@ -31,7 +36,8 @@ body {
 }
 
 button,
-input {
+input,
+label {
   background-color: #4caf50;
   border: none;
   color: white;
@@ -41,6 +47,12 @@ input {
   font-weight: 700;
   cursor: pointer;
   width: 8em;
+  margin: 0;
+}
+
+label {
+  background-color: #54bb58;
+  margin: 0;
 }
 
 .width:focus,
