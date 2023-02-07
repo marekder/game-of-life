@@ -1,8 +1,8 @@
 const grid = document.querySelector("#grid");
 const startStopButton = document.querySelector(".start-stop-button");
 const randomButton = document.querySelector(".random-button");
-const gridWidth = 10;
-const gridHeight = 10;
+const gridWidth = 20;
+const gridHeight = 20;
 let gameGrid = [];
 const cellWidth = 20;
 const cellHeight = 20;
@@ -20,13 +20,11 @@ let startStopGame = startStopButton.addEventListener("click", () => {
     startStopButton.innerText = "Stop";
     startStopButton.style.backgroundColor = "#f44336";
     startGame = !startGame;
+    updateGrid();
   }
-
-  // init() game
 });
 
 // function to create grid
-
 const createGrid = () => {
   for (let row = 0; row < gridWidth; row++) {
     gameGrid[row] = [];
@@ -42,7 +40,7 @@ const renderRandomGrid = () => {
     for (let column = 0; column < gridHeight; column++) {
       const cell = document.createElement("div");
       cell.classList.add("cell");
-      if (Math.random() > 0.5) {
+      if (Math.random() > 0.7) {
         cell.classList.add("alive");
         cell.setAttribute("value", 1);
         gameGrid[row][column] = 1;
@@ -112,12 +110,17 @@ const updateGrid = () => {
     }
   }
   console.log("newGrid", newGrid);
+
+  renderNewGrid(newGrid);
+};
+
+const renderNewGrid = (nextGrid) => {
   grid.innerHTML = "";
   for (let row = 0; row < gridWidth; row++) {
     for (let column = 0; column < gridHeight; column++) {
       const cell = document.createElement("div");
       cell.classList.add("cell");
-      if (newGrid[row][column] == 1) {
+      if (nextGrid[row][column] == 1) {
         cell.classList.add("alive");
         cell.setAttribute("value", 1);
         gameGrid[row][column] = 1;
@@ -136,3 +139,11 @@ const updateGrid = () => {
     }
   }
 };
+
+document.body.addEventListener("click", () => {
+  updateGrid();
+});
+
+// startStopButton.addEventListener('click', ()=>{
+
+// })
