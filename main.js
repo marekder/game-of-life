@@ -16,6 +16,11 @@ widthButton.addEventListener("change", (event) => {
   grid.innerHTML = "";
   widthButton.setAttribute("value", event.target.value);
   gridWidth = parseInt(event.target.value);
+  window.clearInterval(startGame);
+  startGame = false;
+  startStopButton.innerHTML = "Start";
+  startStopButton.style.backgroundColor = "#4caf50";
+
   grid.style.width = `${gridWidth * cellWidth}px`;
 });
 
@@ -23,6 +28,10 @@ heightButton.addEventListener("change", (event) => {
   grid.innerHTML = "";
   heightButton.setAttribute("value", event.target.value);
   gridHeight = parseInt(event.target.value);
+  window.clearInterval(startGame);
+  startGame = false;
+  startStopButton.innerHTML = "Start";
+  startStopButton.style.backgroundColor = "#4caf50";
 });
 
 let startGame = false;
