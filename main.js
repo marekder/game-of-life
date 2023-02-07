@@ -36,8 +36,7 @@ const createGrid = () => {
   }
 };
 
-// function to render grid
-const renderGrid = () => {
+const renderRandomGrid = () => {
   createGrid();
   for (let row = 0; row < gridWidth; row++) {
     for (let column = 0; column < gridHeight; column++) {
@@ -61,17 +60,16 @@ const renderGrid = () => {
       grid.appendChild(cell);
     }
   }
-  console.log("gameGrid", gameGrid);
-  updateGrid();
 };
 
-// const randomGrid = () => {
-//   gameGrid = [];
-//   grid.innerHTML = "";
-//   randomButton.addEventListener("click", renderGrid);
-// };
+randomButton.addEventListener("click", renderRandomGrid);
 
-// randomGrid();
+// function to render grid
+// const renderGrid = () => {
+//   createGrid();
+//   console.log("gameGrid", gameGrid);
+//   updateGrid();
+// };
 
 // function to countAliveNeighbors
 const countAliveNeighbors = (board, row, col) => {
@@ -138,4 +136,3 @@ const updateGrid = () => {
     }
   }
 };
-renderGrid();
