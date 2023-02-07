@@ -1,23 +1,23 @@
 const grid = document.querySelector("#grid");
 const startStopButton = document.querySelector(".start-stop-button");
 const randomButton = document.querySelector(".random-button");
-const gridWidth = 20;
+const widthButton = document.querySelector(".width");
+
+let gridWidth = parseInt(widthButton.getAttribute("value"));
 const gridHeight = 20;
 let gameGrid = [];
 const cellWidth = 20;
 const cellHeight = 20;
 
-// const widthButton = document.querySelector(".width");
-// widthButton.addEventListener("change", (event) => {
-//   widthButton.setAttribute("value", event.target.value);
-// });
-
-// console.log("widthButton", parseInt(widthButton.getAttribute("value")));
-
-// const gridWidth = parseInt(widthButton.getAttribute("value"));
-// console.log("gridWidth", gridWidth);
+widthButton.addEventListener("change", (event) => {
+  widthButton.setAttribute("value", event.target.value);
+  gridWidth = parseInt(event.target.value);
+});
 
 grid.style.width = `${gridWidth * cellWidth}px`;
+
+console.log("gridWidth", gridWidth);
+console.log("cellWidth", cellWidth);
 
 let startGame = false;
 
@@ -63,8 +63,8 @@ const renderRandomGrid = () => {
       }
       // const randomAlive = Math.random() > 0.5 ? "alive" : "dead";
       // cell.classList.add(randomAlive);
-      cell.setAttribute("row", row);
-      cell.id = `${row}-${column}`;
+      // cell.setAttribute("row", row);
+      // cell.id = `${row}-${column}`;
       cell.style.width = `${cellWidth}px`;
       cell.style.height = `${cellHeight}px`;
       grid.appendChild(cell);
@@ -74,22 +74,19 @@ const renderRandomGrid = () => {
 
 randomButton.addEventListener("click", renderRandomGrid);
 
-// function to countAliveNeighbors
 const countAliveNeighbors = (board, row, col) => {
   let count = 0;
-  for (let i = -1; i < 2; i++) {
-    for (let j = -1; j < 2; j++) {
-      if (i === 0 && j === 0) {
-        continue;
-      }
-      const x = row + i;
-      const y = col + j;
-      if (x >= 0 && x < board.length && y >= 0 && y < board[0].length) {
-        count += board[x][y];
+  for (let i = row - 1; i <= row + 1; i++) {
+    if (i >= 0 && i < gridWidth) {
+      for (let j = col - 1; j <= col + 1; j++) {
+        if (j >= 0 && j < gridHeight) {
+          if (i != row || j != col) {
+            count += board[i][j] == 1 ? 1 : 0;
+          }
+        }
       }
     }
   }
-  // console.log("count", count);
   return count;
 };
 
@@ -135,11 +132,14 @@ const renderNewGrid = (nextGrid) => {
       }
       // const randomAlive = Math.random() > 0.5 ? "alive" : "dead";
       // cell.classList.add(randomAlive);
-      cell.setAttribute("row", row);
-      cell.id = `${row}-${column}`;
+      // cell.setAttribute("row", row);
+      // cell.id = `${row}-${column}`;
       cell.style.width = `${cellWidth}px`;
       cell.style.height = `${cellHeight}px`;
       grid.appendChild(cell);
     }
   }
 };
+document.body.addEventListener("click", () => {
+  updateGrid();
+});
