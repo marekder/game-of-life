@@ -81,7 +81,7 @@ const countAliveNeighbors = (board, row, col) => {
       for (let j = col - 1; j <= col + 1; j++) {
         if (j >= 0 && j < gridHeight) {
           if (i != row || j != col) {
-            count += board[i][j] == 1 ? 1 : 0;
+            count += board[i][j] === 1 ? 1 : 0;
           }
         }
       }
@@ -140,6 +140,6 @@ const renderNewGrid = (nextGrid) => {
     }
   }
 };
-document.body.addEventListener("click", () => {
-  updateGrid();
-});
+// document.body.addEventListener("click", () => {
+//   updateGrid();
+// });
