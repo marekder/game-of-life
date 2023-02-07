@@ -6,6 +6,17 @@ const gridHeight = 20;
 let gameGrid = [];
 const cellWidth = 20;
 const cellHeight = 20;
+
+// const widthButton = document.querySelector(".width");
+// widthButton.addEventListener("change", (event) => {
+//   widthButton.setAttribute("value", event.target.value);
+// });
+
+// console.log("widthButton", parseInt(widthButton.getAttribute("value")));
+
+// const gridWidth = parseInt(widthButton.getAttribute("value"));
+// console.log("gridWidth", gridWidth);
+
 grid.style.width = `${gridWidth * cellWidth}px`;
 
 let startGame = false;
@@ -26,6 +37,7 @@ startStopButton.addEventListener("click", () => {
 
 // function to create grid
 const createGrid = () => {
+  grid.innerHTML = "";
   for (let row = 0; row < gridWidth; row++) {
     gameGrid[row] = [];
     for (let col = 0; col < gridHeight; col++) {
@@ -131,7 +143,3 @@ const renderNewGrid = (nextGrid) => {
     }
   }
 };
-
-document.body.addEventListener("click", () => {
-  updateGrid();
-});
