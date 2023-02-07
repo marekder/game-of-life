@@ -2,22 +2,28 @@ const grid = document.querySelector("#grid");
 const startStopButton = document.querySelector(".start-stop-button");
 const randomButton = document.querySelector(".random-button");
 const widthButton = document.querySelector(".width");
+const heightButton = document.querySelector(".height");
 
 let gridWidth = parseInt(widthButton.getAttribute("value"));
-const gridHeight = 20;
+let gridHeight = parseInt(heightButton.getAttribute("value"));
 let gameGrid = [];
 const cellWidth = 20;
 const cellHeight = 20;
 
-widthButton.addEventListener("change", (event) => {
-  widthButton.setAttribute("value", event.target.value);
-  gridWidth = parseInt(event.target.value);
-});
-
 grid.style.width = `${gridWidth * cellWidth}px`;
 
-console.log("gridWidth", gridWidth);
-console.log("cellWidth", cellWidth);
+widthButton.addEventListener("change", (event) => {
+  grid.innerHTML = "";
+  widthButton.setAttribute("value", event.target.value);
+  gridWidth = parseInt(event.target.value);
+  grid.style.width = `${gridWidth * cellWidth}px`;
+});
+
+heightButton.addEventListener("change", (event) => {
+  grid.innerHTML = "";
+  heightButton.setAttribute("value", event.target.value);
+  gridHeight = parseInt(event.target.value);
+});
 
 let startGame = false;
 
@@ -32,15 +38,14 @@ startStopButton.addEventListener("click", () => {
     startStopButton.innerHTML = "Stop";
     startStopButton.style.backgroundColor = "#f44336";
   }
-  console.log("startGame", startGame);
 });
 
 // function to create grid
 const createGrid = () => {
   grid.innerHTML = "";
-  for (let row = 0; row < gridWidth; row++) {
+  for (let row = 0; row < gridHeight; row++) {
     gameGrid[row] = [];
-    for (let col = 0; col < gridHeight; col++) {
+    for (let col = 0; col < gridWidth; col++) {
       gameGrid[row][col] = 0;
     }
   }
@@ -48,8 +53,8 @@ const createGrid = () => {
 
 const renderRandomGrid = () => {
   createGrid();
-  for (let row = 0; row < gridWidth; row++) {
-    for (let column = 0; column < gridHeight; column++) {
+  for (let row = 0; row < gridHeight; row++) {
+    for (let column = 0; column < gridWidth; column++) {
       const cell = document.createElement("div");
       cell.classList.add("cell");
       if (Math.random() > 0.7) {
@@ -77,9 +82,9 @@ randomButton.addEventListener("click", renderRandomGrid);
 const countAliveNeighbors = (board, row, col) => {
   let count = 0;
   for (let i = row - 1; i <= row + 1; i++) {
-    if (i >= 0 && i < gridWidth) {
+    if (i >= 0 && i < gridHeight) {
       for (let j = col - 1; j <= col + 1; j++) {
-        if (j >= 0 && j < gridHeight) {
+        if (j >= 0 && j < gridWidth) {
           if (i != row || j != col) {
             count += board[i][j] === 1 ? 1 : 0;
           }
@@ -92,9 +97,9 @@ const countAliveNeighbors = (board, row, col) => {
 
 const updateGrid = () => {
   let newGrid = [];
-  for (let row = 0; row < gridWidth; row++) {
+  for (let row = 0; row < gridHeight; row++) {
     newGrid[row] = [];
-    for (let col = 0; col < gridHeight; col++) {
+    for (let col = 0; col < gridWidth; col++) {
       let aliveNeighbors = countAliveNeighbors(gameGrid, row, col);
       if (gameGrid[row][col] === 1) {
         if (aliveNeighbors < 2 || aliveNeighbors > 3) {
@@ -117,8 +122,8 @@ const updateGrid = () => {
 
 const renderNewGrid = (nextGrid) => {
   grid.innerHTML = "";
-  for (let row = 0; row < gridWidth; row++) {
-    for (let column = 0; column < gridHeight; column++) {
+  for (let row = 0; row < gridHeight; row++) {
+    for (let column = 0; column < gridWidth; column++) {
       const cell = document.createElement("div");
       cell.classList.add("cell");
       if (nextGrid[row][column] == 1) {
