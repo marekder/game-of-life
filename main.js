@@ -66,7 +66,7 @@ const renderRandomGrid = () => {
     for (let column = 0; column < gridWidth; column++) {
       const cell = document.createElement("div");
       cell.classList.add("cell");
-      if (Math.random() > 0.7) {
+      if (Math.random() > 0.5) {
         cell.classList.add("alive");
         cell.setAttribute("value", 1);
         gameGrid[row][column] = 1;
